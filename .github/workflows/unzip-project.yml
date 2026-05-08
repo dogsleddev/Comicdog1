@@ -1,0 +1,67 @@
+name: Unzip ComicDog project
+
+on:
+  push:
+    paths:
+      - "*.zip"
+
+permissions:
+  contents: write
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Unzip project
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ZIP_FILE="$(ls -1 *.zip | head -n 1 || true)"
+
+          if [ -z "$ZIP_FILE" ]; then
+            echo "No zip file found. Nothing to unzip."
+            exit 0
+          fi
+
+          echo "Found zip: $ZIP_FILE"
+
+          rm -rf _unzipped_project
+          mkdir _unzipped_project
+
+          unzip -q "$ZIP_FILE" -d _unzipped_project
+
+          PROJECT_DIR="$(find _unzipped_project -maxdepth 3 -name package.json -exec dirname {} \; | head -n 1)"
+
+          if [ -z "$PROJECT_DIR" ]; then
+            echo "ERROR: No package.json found inside the zip."
+            exit 1
+          fi
+
+          echo "Project directory found: $PROJECT_DIR"
+
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/workflows/' \
+            "$PROJECT_DIR"/ ./
+
+          rm -rf _unzipped_project "$ZIP_FILE"
+
+      - name: Commit unzipped project files
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+          git commit -m "Unzip ComicDog project files"
+          git push
