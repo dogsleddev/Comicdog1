@@ -17,14 +17,15 @@ export function AppShell() {
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [lastInput, setLastInput] = useState<DogInput | null>(null);
   const [comic, setComic] = useState<Comic | null>(null);
-  const loadingTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
+
+  const loadingTimeoutRef = useRef<number | null>(null);
   const photoUrlRef = useRef<string | null>(null);
 
   useEffect(() => {
     return () => {
       revokeObjectUrl(photoUrlRef.current);
 
-      if (loadingTimeoutRef.current) {
+      if (loadingTimeoutRef.current !== null) {
         window.clearTimeout(loadingTimeoutRef.current);
       }
     };
@@ -52,7 +53,7 @@ export function AppShell() {
   }
 
   function handleGenerate(input: DogInput) {
-    const normalizedInput = {
+    const normalizedInput: DogInput = {
       ...input,
       dogName: input.dogName.trim() || "Mystery Pup",
       photoUrl: input.photoUrl ?? null,
@@ -61,7 +62,10 @@ export function AppShell() {
     setLastInput(normalizedInput);
     setScreen("loading");
 
-    if (loadingTimeoutRef.current) window.clearTimeout(loadingTimeoutRef.current);
+    if (loadingTimeoutRef.current !== null) {
+      window.clearTimeout(loadingTimeoutRef.current);
+    }
+
     loadingTimeoutRef.current = window.setTimeout(() => {
       const seed = makeFreshSeed(comic?.seed);
       setComic(generateComic(normalizedInput, seed));
@@ -72,6 +76,7 @@ export function AppShell() {
 
   function handleRegenerate() {
     if (!lastInput) return;
+
     const seed = makeFreshSeed(comic?.seed);
     setComic(generateComic(lastInput, seed));
   }
@@ -83,9 +88,19 @@ export function AppShell() {
     setScreen("home");
   }
 
+  function handleBackToHome() {
+    setScreen("home");
+  }
+
+  function handleBackFromManual() {
+    setScreen(photoUrl ? "create" : "home");
+  }
+
   return (
     <main className="min-h-dvh">
-      {screen === "home" ? <HomeScreen onPhotoSelected={handlePhotoSelected} onUseSample={handleUseSample} /> : null}
+      {screen === "home" ? (
+        <HomeScreen onPhotoSelected={handlePhotoSelected} onUseSample={handleUseSample} />
+      ) : null}
 
       {screen === "create" ? (
         <CreateComicForm
@@ -94,12 +109,12 @@ export function AppShell() {
           onGenerate={handleGenerate}
           onManualMode={() => setScreen("manual")}
           onUseSample={handleUseSample}
-          onBack={() => setScreen("home")}
+          onBack={handleBackToHome}
         />
       ) : null}
 
       {screen === "manual" ? (
-        <ManualDescriptionForm onGenerate={handleGenerate} onBack={() => setScreen(photoUrl ? "create" : "home")} />
+        <ManualDescriptionForm onGenerate={handleGenerate} onBack={handleBackFromManual} />
       ) : null}
 
       {screen === "loading" ? <LoadingScreen /> : null}
