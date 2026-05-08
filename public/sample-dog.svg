@@ -1,0 +1,25 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#FEF3C7"/>
+  <circle cx="220" cy="160" r="6" fill="#F97316"/>
+  <circle cx="270" cy="210" r="6" fill="#F97316"/>
+  <circle cx="980" cy="150" r="6" fill="#F97316"/>
+  <circle cx="1030" cy="240" r="6" fill="#F97316"/>
+  <circle cx="140" cy="710" r="6" fill="#F97316"/>
+  <circle cx="1070" cy="720" r="6" fill="#F97316"/>
+  <path d="M283 491C207 454 173 373 201 306C229 238 308 210 384 247C460 284 494 365 466 432C438 500 359 528 283 491Z" fill="#F59E0B" stroke="#111827" stroke-width="22"/>
+  <path d="M917 491C993 454 1027 373 999 306C971 238 892 210 816 247C740 284 706 365 734 432C762 500 841 528 917 491Z" fill="#F59E0B" stroke="#111827" stroke-width="22"/>
+  <path d="M353 683C295 590 306 428 376 330C446 232 542 211 600 211C658 211 754 232 824 330C894 428 905 590 847 683C789 776 679 795 600 795C521 795 411 776 353 683Z" fill="#FFF7ED" stroke="#111827" stroke-width="24"/>
+  <path d="M424 390C472 286 544 254 600 254C656 254 728 286 776 390C722 363 660 350 600 350C540 350 478 363 424 390Z" fill="#FDBA74"/>
+  <circle cx="500" cy="478" r="36" fill="#111827"/>
+  <circle cx="700" cy="478" r="36" fill="#111827"/>
+  <circle cx="487" cy="463" r="10" fill="white"/>
+  <circle cx="687" cy="463" r="10" fill="white"/>
+  <path d="M560 565C560 543 580 528 600 528C620 528 640 543 640 565C640 587 620 602 600 602C580 602 560 587 560 565Z" fill="#111827"/>
+  <path d="M600 597C600 640 555 656 512 632" stroke="#111827" stroke-width="18" stroke-linecap="round"/>
+  <path d="M600 597C600 640 645 656 688 632" stroke="#111827" stroke-width="18" stroke-linecap="round"/>
+  <path d="M407 716C466 765 534 785 600 785C666 785 734 765 793 716" stroke="#F97316" stroke-width="26" stroke-linecap="round"/>
+  <path d="M331 190L372 81L414 190H331Z" fill="#FACC15" stroke="#111827" stroke-width="16" stroke-linejoin="round"/>
+  <path d="M786 190L828 81L869 190H786Z" fill="#FACC15" stroke="#111827" stroke-width="16" stroke-linejoin="round"/>
+  <text x="600" y="108" text-anchor="middle" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-size="64" font-weight="900" fill="#111827">SAMPLE DOG</text>
+  <text x="600" y="858" text-anchor="middle" font-family="Arial Rounded MT Bold, Arial, sans-serif" font-size="46" font-weight="900" fill="#EA580C">READY FOR ORIGIN STORY</text>
+</svg>

@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fff7ed;
+  --foreground: #171717;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--background);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at top left, rgba(251, 146, 60, 0.28), transparent 36rem),
+    radial-gradient(circle at bottom right, rgba(250, 204, 21, 0.26), transparent 34rem),
+    linear-gradient(135deg, #fff7ed 0%, #fef3c7 46%, #ffedd5 100%);
+  font-family: var(--font-comicdog, ui-rounded, "Arial Rounded MT Bold", "Trebuchet MS", system-ui, sans-serif);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.comic-card {
+  transform: translateZ(0);
+}
+
+.halftone-orange {
+  background-color: #fed7aa;
+  background-image: radial-gradient(#fb923c 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+
+.halftone-blue {
+  background-color: #dbeafe;
+  background-image: radial-gradient(#60a5fa 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+
+.halftone-purple {
+  background-color: #ede9fe;
+  background-image: radial-gradient(#a78bfa 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+
+.halftone-green {
+  background-color: #dcfce7;
+  background-image: radial-gradient(#4ade80 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+
+.halftone-yellow {
+  background-color: #fef3c7;
+  background-image: radial-gradient(#facc15 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+
+.halftone-pink {
+  background-color: #fce7f3;
+  background-image: radial-gradient(#f472b6 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+
+.comic-shadow {
+  box-shadow: 8px 8px 0 #111827;
+}
+
+.text-stroke-light {
+  text-shadow:
+    -1px -1px 0 #111827,
+    1px -1px 0 #111827,
+    -1px 1px 0 #111827,
+    1px 1px 0 #111827;
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 24px;
+  width: 18px;
+  height: 18px;
+  background: inherit;
+  border-right: 3px solid #111827;
+  border-bottom: 3px solid #111827;
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wiggle {
+    animation: wiggle 1.4s ease-in-out infinite;
+  }
+
+  .floaty {
+    animation: floaty 2.2s ease-in-out infinite;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-2deg) scale(1); }
+    50% { transform: rotate(2deg) scale(1.02); }
+  }
+
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+}
